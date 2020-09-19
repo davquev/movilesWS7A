@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AppGeoQSI</string>
+    <string name="capital">¿Es Lima capital de Peru?</string>
+    <string name="rpta_si">si</string>
+    <string name="rpta_no">no</string>
+    <string name="siguiente">siguiente</string>
+</resources>
