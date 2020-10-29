@@ -13,6 +13,9 @@ class MyApp extends StatelessWidget{
   Widget build(BuildContext context) {
     return MaterialApp(
           title: 'App Name Generator!!',
+      theme: ThemeData(
+        primaryColor: Colors.green,
+      ),
       home: RandomWords(),
         );
   }
@@ -33,8 +36,43 @@ class RandomWordsState extends State<RandomWords> {
     return Scaffold(
       appBar: AppBar(
         title: Text('App Name Generator!!!'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.list),
+            onPressed: pushSaved),
+        ],
       ),
       body: buildSuggestions(),
+    );
+  }
+
+  void pushSaved() {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          final Iterable<ListTile> tiles = saved.map(
+                (WordPair pair) {
+              return ListTile(
+                title: Text(
+                  pair.asPascalCase,
+                  style: biggerFont,
+                ),
+              );
+            },
+          );
+          final List<Widget> divided = ListTile
+              .divideTiles(
+            context: context,
+            tiles: tiles,
+          ).toList();
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Favs!!!'),
+            ),
+            body: ListView(children: divided),
+          );
+        },
+          ),
     );
   }
 
@@ -73,6 +111,8 @@ class RandomWordsState extends State<RandomWords> {
       },
     );
   }
+
+
 }
 
 
